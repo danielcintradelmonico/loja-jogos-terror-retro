@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja de Jogos de Terror Retrô</title>
+  <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+  <header>
+    <h1>Loja de Jogos de Terror Retrô</h1>
+    <p>Projeto de Programação Web Back-End</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Consultas</h2>
+      <p>Os botões abrem os dados da API em uma nova aba.</p>
+      <div class="links">
+        <a href="/categorias" target="_blank">Categorias</a>
+        <a href="/desenvolvedoras" target="_blank">Desenvolvedoras</a>
+        <a href="/jogos" target="_blank">Jogos</a>
+        <a href="/avaliacoes" target="_blank">Avaliações</a>
+        <a href="/jogos/1/detalhes" target="_blank">Detalhes do jogo 1</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Cadastros</h2>
+      <p>Ao enviar, a resposta JSON será aberta em outra aba.</p>
+
+      <div class="grade">
+        <form action="/categorias" method="post" target="_blank">
+          <h3>Cadastrar categoria</h3>
+
+          <label for="categoria-nome">Nome</label>
+          <input id="categoria-nome" name="nome" type="text" maxlength="100" required>
+
+          <label for="categoria-descricao">Descrição</label>
+          <textarea id="categoria-descricao" name="descricao" rows="3" maxlength="1000"></textarea>
+
+          <button type="submit">Cadastrar</button>
+        </form>
+
+        <form action="/desenvolvedoras" method="post" target="_blank">
+          <h3>Cadastrar desenvolvedora</h3>
+
+          <label for="desenvolvedora-nome">Nome</label>
+          <input id="desenvolvedora-nome" name="nome" type="text" maxlength="150" required>
+
+          <label for="desenvolvedora-pais">País</label>
+          <input id="desenvolvedora-pais" name="pais" type="text" maxlength="100" required>
+
+          <label for="desenvolvedora-ano">Ano de fundação</label>
+          <input id="desenvolvedora-ano" name="anoFundacao" type="number" min="1950" max="2026">
+
+          <button type="submit">Cadastrar</button>
+        </form>
+
+        <form action="/jogos" method="post" target="_blank">
+          <h3>Cadastrar jogo</h3>
+
+          <label for="jogo-titulo">Título</label>
+          <input id="jogo-titulo" name="titulo" type="text" maxlength="150" required>
+
+          <label for="jogo-descricao">Descrição</label>
+          <textarea id="jogo-descricao" name="descricao" rows="3" maxlength="2000" required></textarea>
+
+          <label for="jogo-preco">Preço</label>
+          <input id="jogo-preco" name="preco" type="number" min="0" max="10000" step="0.01" required>
+
+          <label for="jogo-ano">Ano de lançamento</label>
+          <input id="jogo-ano" name="anoLancamento" type="number" min="1970" max="2027" required>
+
+          <label for="jogo-plataforma">Plataforma</label>
+          <input id="jogo-plataforma" name="plataforma" type="text" maxlength="100" required>
+
+          <label for="jogo-estoque">Estoque</label>
+          <input id="jogo-estoque" name="estoque" type="number" min="0" max="1000000" required>
+
+          <label for="jogo-categoria">ID da categoria</label>
+          <input id="jogo-categoria" name="categoriaId" type="number" min="1" value="1" required>
+
+          <label for="jogo-desenvolvedora">ID da desenvolvedora</label>
+          <input id="jogo-desenvolvedora" name="desenvolvedoraId" type="number" min="1" value="1" required>
+
+          <button type="submit">Cadastrar</button>
+        </form>
+
+        <form action="/avaliacoes" method="post" target="_blank">
+          <h3>Cadastrar avaliação</h3>
+
+          <label for="avaliacao-jogo">ID do jogo</label>
+          <input id="avaliacao-jogo" name="jogoId" type="number" min="1" required>
+
+          <label for="avaliacao-usuario">Usuário</label>
+          <input id="avaliacao-usuario" name="avaliacoes[0][usuario]" type="text" maxlength="100" required>
+
+          <label for="avaliacao-nota">Nota de 1 a 5</label>
+          <input id="avaliacao-nota" name="avaliacoes[0][nota]" type="number" min="1" max="5" required>
+
+          <label for="avaliacao-comentario">Comentário</label>
+          <textarea id="avaliacao-comentario" name="avaliacoes[0][comentario]" rows="3" maxlength="1000" required></textarea>
+
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
+    </section>
+
+    <section>
+      <h2>Consultar jogos</h2>
+      <form action="/jogos" method="get" target="_blank">
+        <label for="busca-titulo">Parte do título</label>
+        <input id="busca-titulo" name="titulo" type="text">
+
+        <label for="busca-categoria">ID da categoria</label>
+        <input id="busca-categoria" name="categoriaId" type="number" min="1">
+
+        <label for="busca-ordem">Ordenar por preço</label>
+        <select id="busca-ordem" name="ordem">
+          <option value="ASC">Menor preço primeiro</option>
+          <option value="DESC">Maior preço primeiro</option>
+        </select>
+
+        <input name="ordenarPor" type="hidden" value="preco">
+        <input name="pagina" type="hidden" value="1">
+        <input name="limite" type="hidden" value="5">
+
+        <button type="submit">Consultar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    Node.js · Express · PostgreSQL · Sequelize · MongoDB · Mongoose
+  </footer>
+</body>
+</html>
